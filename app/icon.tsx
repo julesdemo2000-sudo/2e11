@@ -12,18 +12,22 @@ export default function Icon() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-end",
-          background: "#111111",
-          padding: 4,
-          fontWeight: 900,
-          fontSize: 16,
-          lineHeight: 0.8,
-          letterSpacing: "-0.01em",
-          color: "#FFFFFF",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <span>2e</span>
-        <span style={{ color: "#D40000" }}>11</span>
+        <span
+          style={{
+            fontWeight: 900,
+            fontSize: 28,
+            lineHeight: 1,
+            letterSpacing: "-0.02em",
+            color: "#D40000",
+          }}
+        >
+          11
+        </span>
+        <div style={{ width: 20, height: 2, background: "#111111", marginTop: 2 }} />
       </div>
     ),
     { ...size }

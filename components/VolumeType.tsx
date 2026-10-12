@@ -22,9 +22,16 @@ function paramsFor(level: number) {
 const DIAL_MIN_DEG = -135;
 const DIAL_SWEEP_DEG = 270;
 
+// Rounded to a fixed precision so server and client render the exact same
+// string — raw Math.sin/cos output can differ in the last float digit
+// between environments, which React treats as a hydration mismatch.
+function round(n: number) {
+  return Math.round(n * 1000) / 1000;
+}
+
 function tickPoint(cx: number, cy: number, r: number, deg: number) {
   const rad = (deg * Math.PI) / 180;
-  return { x: cx + r * Math.sin(rad), y: cy - r * Math.cos(rad) };
+  return { x: round(cx + r * Math.sin(rad)), y: round(cy - r * Math.cos(rad)) };
 }
 
 function VolumeDial({
@@ -38,7 +45,9 @@ function VolumeDial({
   accent: string;
   reducedMotion: boolean;
 }) {
-  const angle = DIAL_MIN_DEG + (level / 11) * DIAL_SWEEP_DEG;
+  const angle = round(DIAL_MIN_DEG + (level / 11) * DIAL_SWEEP_DEG);
+  const dashOn = round((level / 11) * (DIAL_SWEEP_DEG / 360) * 2 * Math.PI * 46);
+  const dashTotal = round(2 * Math.PI * 46);
   const cx = 60;
   const cy = 60;
   const dialId = "volume-dial-progress";
@@ -62,7 +71,7 @@ function VolumeDial({
           stroke={accent}
           strokeWidth="3"
           strokeLinecap="round"
-          strokeDasharray={`${(level / 11) * (DIAL_SWEEP_DEG / 360) * 2 * Math.PI * 46} ${2 * Math.PI * 46}`}
+          strokeDasharray={`${dashOn} ${dashTotal}`}
           transform={`rotate(${DIAL_MIN_DEG - 90} ${cx} ${cy})`}
           className={reducedMotion ? "" : "transition-[stroke-dasharray] duration-300"}
         />
