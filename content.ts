@@ -29,6 +29,8 @@ export const scaleCaption = {
   right: "Everyone else stops at 10",
 };
 
+export const selectedWorkHeading = "Our brands —";
+
 export type WorkItem = {
   n: string;
   title: string;

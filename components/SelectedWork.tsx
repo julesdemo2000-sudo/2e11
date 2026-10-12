@@ -1,16 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { selectedWork } from "@/content";
+import { selectedWork, selectedWorkHeading } from "@/content";
 
 export function SelectedWork() {
   return (
     <section className="flex flex-wrap bg-ink text-white">
-      <div className="flex min-h-[72px] flex-[0_0_72px] items-center justify-center bg-signal py-7 text-ink">
+      <div className="flex min-h-[92px] flex-[0_0_92px] items-center justify-center bg-signal py-7 text-ink">
         <div
-          className="display whitespace-nowrap text-[30px]"
+          className="display whitespace-nowrap text-[42px]"
           style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
         >
-          Selected work —
+          {selectedWorkHeading}
         </div>
       </div>
       <div
