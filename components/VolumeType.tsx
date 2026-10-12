@@ -117,6 +117,15 @@ export function VolumeType() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [level, setLevel] = useState(11);
   const pinnedRef = useRef<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 639px)");
+    const sync = () => setIsMobile(mql.matches);
+    sync();
+    mql.addEventListener("change", sync);
+    return () => mql.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -152,6 +161,13 @@ export function VolumeType() {
   };
 
   const { weight, stretch, fontSize, bg, fg, accent } = paramsFor(reducedMotion ? 11 : level);
+  const t = (reducedMotion ? 11 : level) / 11;
+  // On mobile the headline+dial block no longer shares a row with the dial
+  // (it stacks), leaving a lot of unused vertical space — grow the type with
+  // viewport height too, scaled by volume, so it actually fills that space
+  // as the level climbs toward 11. Desktop already fills its row via vw
+  // alone, so this stays at 0 there.
+  const vhBoost = isMobile ? t * 1.5 : 0;
 
   const body = (
     <div
@@ -168,8 +184,8 @@ export function VolumeType() {
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
-        <div className="min-w-0 flex-1 uppercase" style={{ lineHeight: 0.86 }}>
+      <div className="flex flex-1 flex-col items-start justify-center gap-6 sm:flex-row sm:items-center sm:gap-8">
+        <div className="min-w-0 uppercase sm:flex-1" style={{ lineHeight: 0.86 }}>
           {volumeType.lines.map((line, i) => (
             <div
               key={line}
@@ -178,7 +194,7 @@ export function VolumeType() {
                 fontFamily: "var(--font-archivo), Archivo, sans-serif",
                 fontWeight: weight,
                 fontStretch: `${stretch}%`,
-                fontSize: `clamp(32px, ${fontSize / 10}vw, ${fontSize * 3}px)`,
+                fontSize: `clamp(32px, calc(${fontSize / 10}vw + ${vhBoost}vh), ${fontSize * 3}px)`,
                 letterSpacing: "-0.01em",
                 color: i === volumeType.lines.length - 1 ? accent : fg,
               }}
