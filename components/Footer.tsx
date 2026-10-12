@@ -77,6 +77,13 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+      <div
+        className="label border-t-[1.5px] border-[#2A2A2A] px-page py-5 text-muted-on-ink"
+        style={{ maxWidth: "var(--max-width)", margin: "0 auto" }}
+      >
+        © {new Date().getFullYear()} {footer.legalName}
+      </div>
     </footer>
   );
 }

@@ -3,7 +3,7 @@
 // and replace them. No facts, stats, clients or testimonials are invented.
 
 export const metaRow = {
-  left: { tag: "Creative / digital", sub: "media / sound" },
+  left: { tag: "Creative / digital / media / sound" },
 };
 
 export const hero = {
@@ -19,7 +19,7 @@ export const hero = {
     "The 2e11 founder in black and white, sitting cross-legged on a studio floor, smiling at the camera",
   nameTag: {
     name: "Jules Bayes",
-    role: "Founder",
+    role: "Director",
     vol: "Vol. 11 / 11",
   },
 };
@@ -145,6 +145,7 @@ export const footer = {
   ],
   stampLabel: "CREATIVE • DIGITAL • MEDIA • SOUND • 2E11 • ",
   barcode: "2E11—0011",
+  legalName: "2e11 Digital & Media Ltd",
 };
 
 export const contactReasonOptions = [

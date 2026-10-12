@@ -9,14 +9,12 @@ export function Header() {
         <div>
           <div className="mb-2 h-[3px] w-4 bg-signal" />
           {metaRow.left.tag}
-          <br />
-          {metaRow.left.sub}
         </div>
       </div>
 
       <nav className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t-[1.5px] border-b-[1.5px] border-ink py-4">
-        <Link href="/" aria-label="2e11 home" className="block w-[120px] no-underline">
-          <Logo size={40} />
+        <Link href="/" aria-label="2e11 home" className="block w-fit no-underline">
+          <Logo size={56} />
         </Link>
       </nav>
     </div>
