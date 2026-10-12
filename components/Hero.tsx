@@ -14,7 +14,7 @@ export function Hero() {
 
   return (
     <section className="flex flex-wrap gap-8 pt-12">
-      <div className="flex min-w-0 flex-[1_1_560px] flex-col justify-between gap-12">
+      <div className="flex min-w-0 flex-[1_1_360px] flex-col justify-between gap-12">
         <div>
           <div className="label mb-3 text-muted-on-paper">{hero.eyebrow}</div>
           <h1 className="display m-0" style={{ fontSize: "var(--display-xl)" }}>
@@ -79,7 +79,10 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative h-[520px] min-w-0 overflow-hidden flex-[1_1_480px] md:h-[760px]">
+      <div
+        className="relative min-w-0 overflow-hidden flex-[1_1_280px]"
+        style={{ aspectRatio: "3 / 4" }}
+      >
         <div
           aria-hidden
           className="display pointer-events-none absolute select-none transition-transform duration-700 ease-out motion-reduce:transition-none"
@@ -110,7 +113,7 @@ export function Hero() {
         </svg>
 
         <div
-          className="absolute inset-x-0 bottom-0 flex h-[70%] justify-center transition-transform duration-700 ease-out motion-reduce:transition-none md:h-[700px]"
+          className="absolute inset-x-0 bottom-0 flex h-[70%] justify-center transition-transform duration-700 ease-out motion-reduce:transition-none"
           style={{ transform: `translateY(${loaded ? 0 : 40}px)` }}
         >
           <div className="relative h-full" style={{ aspectRatio: "969 / 1259" }}>
@@ -141,7 +144,7 @@ export function Hero() {
           <path d="M32 0v64M0 32h64" />
         </svg>
 
-        <div className="label absolute top-[520px] right-0 hidden bg-ink px-[22px] py-[18px] leading-[1.5] text-white md:block">
+        <div className="label absolute bottom-6 right-0 hidden bg-ink px-[22px] py-[18px] leading-[1.5] text-white md:block">
           {hero.nameTag.name}
           <br />
           {hero.nameTag.role}
