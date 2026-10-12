@@ -1,46 +1,24 @@
-"use client";
-
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { useVolume } from "@/lib/volume-context";
-import { nav, headerPills } from "@/content";
+import { metaRow } from "@/content";
 
 export function Header() {
-  const { vol } = useVolume();
-
   return (
-    <header className="sticky top-0 z-30 bg-black">
-      <nav className="flex flex-wrap items-center gap-x-8 gap-y-4 px-page py-3.5">
-        <Link href="#top" aria-label="2e11 home" className="mr-auto no-underline">
-          <Logo vol={vol} size={26} />
+    <div style={{ maxWidth: "var(--max-width)", margin: "0 auto" }} className="px-page pt-7">
+      <div className="flex flex-wrap justify-between gap-4 label">
+        <div>
+          <div className="mb-2 h-[3px] w-4 bg-signal" />
+          {metaRow.left.tag}
+          <br />
+          {metaRow.left.sub}
+        </div>
+      </div>
+
+      <nav className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t-[1.5px] border-b-[1.5px] border-ink py-4">
+        <Link href="/" aria-label="2e11 home" className="block w-[120px] no-underline">
+          <Logo size={40} />
         </Link>
-
-        <div className="flex flex-wrap gap-6 text-[15px] font-medium">
-          {nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-white no-underline transition-colors hover:text-acc"
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex gap-2">
-          {headerPills.map((pill) => (
-            <a
-              key={pill.href}
-              href={pill.href}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full bg-pill-inactive px-3 py-1.5 text-xs font-bold text-white no-underline transition-colors hover:bg-acc hover:text-black"
-            >
-              {pill.label}
-            </a>
-          ))}
-        </div>
       </nav>
-    </header>
+    </div>
   );
 }

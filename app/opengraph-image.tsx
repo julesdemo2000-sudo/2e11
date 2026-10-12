@@ -1,8 +1,13 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
-export const alt = "2e11 — media, music & digital brands";
+export const alt = "2e11 — turned up to eleven";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+const vestData = await readFile(join(process.cwd(), "assets-source/founder-vest-cutout.png"), "base64");
+const vestSrc = `data:image/png;base64,${vestData}`;
 
 export default function OgImage() {
   return new ImageResponse(
@@ -12,36 +17,51 @@ export default function OgImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 28,
-          background: "#000",
+          position: "relative",
+          background: "#ECE7DC",
+          overflow: "hidden",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div
-            style={{
-              width: 110,
-              height: 110,
-              borderRadius: "50%",
-              background: "#c6f432",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span style={{ fontSize: 48, fontWeight: 800, color: "#000", letterSpacing: "-2px" }}>
-              11
-            </span>
-          </div>
-          <span style={{ fontSize: 104, fontWeight: 800, color: "#fff", letterSpacing: "1px" }}>
-            2e11
-          </span>
+        <div
+          style={{
+            position: "absolute",
+            right: -20,
+            top: -60,
+            fontWeight: 900,
+            fontSize: 620,
+            lineHeight: 0.8,
+            color: "#D40000",
+            letterSpacing: "-0.03em",
+            display: "flex",
+          }}
+        >
+          11
         </div>
-        <span style={{ fontSize: 30, fontWeight: 300, color: "#cfcfcf" }}>
-          Media, music &amp; digital brands
-        </span>
+        <img
+          src={vestSrc}
+          alt=""
+          height={630}
+          style={{ position: "absolute", right: 60, bottom: 0, objectFit: "contain" }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: 64,
+            bottom: 64,
+            display: "flex",
+            flexDirection: "column",
+            fontWeight: 900,
+            fontSize: 96,
+            lineHeight: 0.8,
+            color: "#111111",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          <div style={{ display: "flex" }}>2e11</div>
+          <div style={{ display: "flex", fontSize: 28, fontWeight: 500, marginTop: 20, color: "#55534E" }}>
+            Turned up to eleven.
+          </div>
+        </div>
       </div>
     ),
     { ...size }

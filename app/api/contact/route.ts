@@ -1,25 +1,23 @@
 import { NextResponse } from "next/server";
 
 type ContactPayload = {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
-  reason: string;
-  message: string;
+  making: string;
+  budget: string;
 };
 
 function isValidPayload(data: unknown): data is ContactPayload {
   if (!data || typeof data !== "object") return false;
   const d = data as Record<string, unknown>;
   return (
-    typeof d.firstName === "string" &&
-    d.firstName.trim().length > 0 &&
-    typeof d.lastName === "string" &&
-    d.lastName.trim().length > 0 &&
+    typeof d.name === "string" &&
+    d.name.trim().length > 0 &&
     typeof d.email === "string" &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email) &&
-    typeof d.reason === "string" &&
-    typeof d.message === "string"
+    typeof d.making === "string" &&
+    d.making.trim().length > 0 &&
+    typeof d.budget === "string"
   );
 }
 
@@ -60,12 +58,12 @@ export async function POST(request: Request) {
         from: "2e11 <hello@2e11.com>",
         to: [to],
         reply_to: body.email,
-        subject: `2e11 contact: ${body.reason}`,
+        subject: `2e11 contact: ${body.name}`,
         text: [
-          `From: ${body.firstName} ${body.lastName} <${body.email}>`,
-          `Reason: ${body.reason}`,
+          `From: ${body.name} <${body.email}>`,
+          `Budget: ${body.budget}`,
           "",
-          body.message,
+          body.making,
         ].join("\n"),
       }),
     });

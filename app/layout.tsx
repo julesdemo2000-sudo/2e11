@@ -1,26 +1,19 @@
 import type { Metadata } from "next";
-import { Unbounded, Archivo, Hanken_Grotesk } from "next/font/google";
-import { VolumeProvider } from "@/lib/volume-context";
+import { Archivo, IBM_Plex_Mono } from "next/font/google";
+import { GrainOverlay } from "@/components/GrainOverlay";
 import "./globals.css";
-
-const unbounded = Unbounded({
-  subsets: ["latin"],
-  weight: "800",
-  variable: "--font-unbounded",
-  display: "swap",
-});
 
 const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["500", "700", "800", "900"],
+  axes: ["wdth"],
   variable: "--font-archivo",
   display: "swap",
 });
 
-const hanken = Hanken_Grotesk({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700", "800"],
-  variable: "--font-hanken",
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
@@ -28,22 +21,22 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://2e11.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "2e11 · Media, music & digital brands",
+  title: "2e11 — Creative studio. Digital, media & sound.",
   description:
-    "2e11 is a holding company for media, music and digital brands — clrfy.io, getfoh, Records & publishing and whatever's next. Maximum is ten. We go one louder.",
+    "2e11 is a creative studio that builds its own products, makes media and writes music. Same team, same standard: as far as it goes, then one more.",
   openGraph: {
-    title: "2e11 · Media, music & digital brands",
+    title: "2e11 — Turned up to eleven.",
     description:
-      "A house of media, music and digital brands: clrfy.io, getfoh, Records & publishing and an open channel for new pitches.",
+      "A creative studio covering digital products, media, design, music and production. Owns clrfy.io and getfoh.com.",
     url: siteUrl,
     siteName: "2e11",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "2e11 · Media, music & digital brands",
+    title: "2e11 — Turned up to eleven.",
     description:
-      "A house of media, music and digital brands: clrfy.io, getfoh, Records & publishing and an open channel for new pitches.",
+      "A creative studio covering digital products, media, design, music and production.",
   },
 };
 
@@ -53,9 +46,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${unbounded.variable} ${archivo.variable} ${hanken.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${plexMono.variable}`}>
       <body>
-        <VolumeProvider>{children}</VolumeProvider>
+        <GrainOverlay />
+        {children}
       </body>
     </html>
   );

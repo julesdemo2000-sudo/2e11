@@ -11,22 +11,19 @@ export default function Icon() {
           width: "100%",
           height: "100%",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#c6f432",
-          borderRadius: "50%",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          background: "#111111",
+          padding: 4,
+          fontWeight: 900,
+          fontSize: 16,
+          lineHeight: 0.8,
+          letterSpacing: "-0.01em",
+          color: "#FFFFFF",
         }}
       >
-        <span
-          style={{
-            fontSize: 16,
-            fontWeight: 800,
-            color: "#000",
-            letterSpacing: "-1px",
-          }}
-        >
-          11
-        </span>
+        <span>2e</span>
+        <span style={{ color: "#D40000" }}>11</span>
       </div>
     ),
     { ...size }

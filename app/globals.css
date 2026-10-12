@@ -1,101 +1,119 @@
 @import "tailwindcss";
 
+/* 2e11 — brand tokens (direction C: editorial)
+   Fonts: Archivo (variable: wdth 62-125, wght 100-900) + IBM Plex Mono (400/500/600). */
 :root {
-  --acc: #c6f432;
+  --paper: #ece7dc;
+  --ink: #111111;
+  --signal: #d40000;
+  --white: #ffffff;
+  --ash: #8a877f;
+  --muted-on-paper: #55534e;
+  --muted-on-ink: #9a978f;
+  --signal-text: #a30000;
+  --rule: #111111;
 
-  --bg: #000000;
-  --surface: #141414;
-  --surface-hover: #1f1f1f;
-  --pill-inactive: #1c1c1c;
-  --pill-inactive-alt: #2a2a2a;
-  --hero-fallback: #111111;
+  --display-stretch: 62%;
+  --display-weight: 900;
+  --display-leading: 0.84;
+  --display-tracking: -0.012em;
+  --display-xl: clamp(84px, 11.5vw, 184px);
+  --display-l: clamp(72px, 10vw, 168px);
+  --display-m: 48px;
+  --display-s: 24px;
 
-  --text: #ffffff;
-  --text-secondary: #cfcfcf;
-  --text-muted: #999999;
-  --text-muted-alt: #bbbbbb;
-  --tick-off: #555555;
+  --mono-xs: 11px;
+  --mono-s: 12px;
+  --mono-m: 13px;
+  --mono-l: 14px;
+  --mono-leading: 1.6;
+  --mono-tracking: 0.04em;
 
-  --light-bg: #ffffff;
-  --light-text: #000000;
-  --light-body: #333333;
-  --light-fallback: #e8e8e6;
+  --max-width: 1440px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --rule-width: 1.5px;
 
-  --knob-disc: #f4f4f2;
-  --knob-ring: #cfcfcb;
+  --grain-opacity: 0.32;
 }
 
 @theme inline {
-  --font-unbounded: var(--font-unbounded);
-  --font-archivo: var(--font-archivo);
-  --font-hanken: var(--font-hanken);
+  --font-display: "Archivo", var(--font-archivo), system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", var(--font-plex-mono), ui-monospace, monospace;
 
-  --color-acc: var(--acc);
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-surface-hover: var(--surface-hover);
-  --color-pill-inactive: var(--pill-inactive);
-  --color-pill-inactive-alt: var(--pill-inactive-alt);
-  --color-hero-fallback: var(--hero-fallback);
-
-  --color-text: var(--text);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
-  --color-text-muted-alt: var(--text-muted-alt);
-  --color-tick-off: var(--tick-off);
-
-  --color-light-bg: var(--light-bg);
-  --color-light-text: var(--light-text);
-  --color-light-body: var(--light-body);
-  --color-light-fallback: var(--light-fallback);
-
-  --color-knob-disc: var(--knob-disc);
-  --color-knob-ring: var(--knob-ring);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-signal: var(--signal);
+  --color-white: var(--white);
+  --color-ash: var(--ash);
+  --color-muted-on-paper: var(--muted-on-paper);
+  --color-muted-on-ink: var(--muted-on-ink);
+  --color-signal-text: var(--signal-text);
+  --color-rule: var(--rule);
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-archivo), "Archivo", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: var(--ink);
+  }
+  a:hover {
+    color: var(--signal-text);
+  }
+
+  ::selection {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+  }
 }
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-hanken), sans-serif;
-}
+@layer components {
+  .display {
+    font-family: var(--font-archivo), "Archivo", sans-serif;
+    font-stretch: var(--display-stretch);
+    font-weight: var(--display-weight);
+    line-height: var(--display-leading);
+    letter-spacing: var(--display-tracking);
+    text-transform: uppercase;
+  }
 
-* {
-  box-sizing: border-box;
-}
+  .label {
+    font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+    font-size: var(--mono-s);
+    line-height: 1.4;
+    letter-spacing: var(--mono-tracking);
+    text-transform: uppercase;
+  }
 
-a {
-  color: #fff;
-}
-
-::selection {
-  background: #fff;
-  color: #000;
-}
-
-:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 3px;
-}
-
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-.px-page {
-  padding-left: clamp(16px, 3vw, 40px);
-  padding-right: clamp(16px, 3vw, 40px);
-}
-
-.py-section {
-  padding-top: clamp(48px, 7vw, 112px);
-  padding-bottom: clamp(48px, 7vw, 112px);
+  .px-page {
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

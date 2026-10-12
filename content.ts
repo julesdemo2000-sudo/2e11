@@ -1,184 +1,164 @@
-// All copy, lists and content for the 2e11 landing page.
-// Wording is verbatim from design_handoff_2e11_landing/README.md and the
-// design/2e11 Website v11.dc.html reference.
+// All copy for the 2e11 editorial site. Bracketed placeholders are kept
+// exactly as written (e.g. [city], [Founder name]) so the client can find
+// and replace them. No facts, stats, clients or testimonials are invented.
 
-export type ReelSlide = {
-  id: string;
-  name: string;
-  src: string;
-  alt: string;
+export const metaRow = {
+  left: { tag: "Creative / digital", sub: "media / sound" },
 };
 
-export const reelSlides: ReelSlide[] = [
-  { id: "clrfy", name: "clrfy.io", src: "/images/reel-clrfy.png", alt: "clrfy.io branding" },
-  { id: "getfoh", name: "getfoh.com", src: "/images/reel-getfoh.png", alt: "getfoh.com branding" },
-  { id: "records", name: "Records & publishing", src: "/images/reel-records.png", alt: "Records & publishing studio" },
-];
-
-// Volume comments, 0 to 11 (README "Copy" section, verbatim).
-export const volumeMessages: string[] = [
-  "Off. Like most agency proposals.",
-  "Barely audible.",
-  "Dentist waiting room.",
-  "Polite.",
-  "Inoffensive. Forgettable.",
-  "Middle of the road.",
-  "Getting somewhere.",
-  "Respectable. Fine. Sure.",
-  "Now we're talking.",
-  "Loud.",
-  "Maximum. Allegedly.",
-  "One louder. This is where we work.",
-];
-
-export type BrandStatus = "Live" | "Building" | "Planned" | "Free";
-
-export type Brand = {
-  id: string;
-  name: string;
-  status: BrandStatus;
-  level: number; // 0-11, lit segments on the meter at full scroll progress
-  body: string;
-  href: string;
-  external: boolean;
-  logo?: { src: string; alt: string; bg?: "white" | "dark" };
+export const hero = {
+  eyebrow: "Digital and Media",
+  h1Lines: ["Turned", "up to", "eleven."],
+  aboutHeading: "About 2e11",
+  aboutParagraphs: [
+    "A creative studio that builds its own products, makes media and writes music. Same team, same standard: as far as it goes, then one more.",
+    "Minimal noise.\nMaximum volume.",
+  ],
+  globeCaption: "Products, campaigns\n& scores, worldwide",
+  founderAlt:
+    "The 2e11 founder in black and white, sitting cross-legged on a studio floor, smiling at the camera",
+  nameTag: {
+    name: "Jules Bayes",
+    role: "Founder",
+    vol: "Vol. 11 / 11",
+  },
 };
 
-export const brands: Brand[] = [
-  {
-    id: "clrfy",
-    name: "clrfy.io",
-    status: "Live",
-    level: 11,
-    body: "Digital and media solutions and content, built for people who need things made clear.",
-    href: "https://clrfy.io",
-    external: true,
-    logo: { src: "/images/clrfy-mark-white.png", alt: "clrfy logo" },
-  },
-  {
-    id: "getfoh",
-    name: "getfoh.com",
-    status: "Building",
-    level: 6,
-    body: "Crowd-sourced living-room concerts. Fans pick the artist, someone offers the sofa.",
-    href: "https://www.getfoh.com",
-    external: true,
-    logo: { src: "/images/logo-getfoh.png", alt: "getfoh logo" },
-  },
-  {
-    id: "records",
-    name: "Records & publishing",
-    status: "Planned",
-    level: 3,
-    body: "A label and publishing company for the artists we meet along the way.",
-    href: "#contact",
-    external: false,
-  },
-  {
-    id: "open",
-    name: "Open channel",
-    status: "Free",
-    level: 0,
-    body: "Got an idea that deserves an eleven? Pitch us.",
-    href: "#contact",
-    external: false,
-  },
-];
+export const scaleCaption = {
+  left: "2e11 = 2 × 10¹¹ = “to eleven”",
+  right: "Everyone else stops at 10",
+};
 
 export type WorkItem = {
-  id: string;
-  image: string | null;
-  imageAlt: string;
-  tags: string[];
+  n: string;
   title: string;
-  body: string;
+  kind: string;
+  screen: string;
+  bg: string;
+  fg: string;
+  href: string;
+  external: boolean;
+  logo?: { src: string; alt: string };
 };
 
-export const workItems: WorkItem[] = [
+export const selectedWork: WorkItem[] = [
   {
-    id: "clrfy-work",
-    image: "/images/work-1.png",
-    imageAlt: "clrfy.io project image",
-    tags: ["clrfy.io", "Digital", "Content"],
-    title: "clrfy.io: making the complicated clear",
-    body: "A product and content system that turns dense information into something people actually read, shipped in weeks rather than quarters.",
+    n: "01",
+    title: "clrfy.io",
+    kind: "Own product / digital",
+    screen: "CLRFY",
+    bg: "#111111",
+    fg: "#ECE7DC",
+    href: "https://clrfy.io",
+    external: true,
+    logo: { src: "/images/logos/clrfy-mark.png", alt: "clrfy.io" },
   },
   {
-    id: "getfoh-work",
-    image: "/images/work-2.png",
-    imageAlt: "getfoh gig photo",
-    tags: ["getfoh", "Music", "Community"],
-    title: "getfoh: the sofa tour",
-    body: "Crowd-sourced living-room concerts. Fans vote for the artist, a host offers the room, and everyone chips in for a night nobody forgets.",
-  },
-  {
-    id: "records-work",
-    image: null,
-    imageAlt: "Label artwork",
-    tags: ["Records & publishing", "Coming soon"],
-    title: "The label: first signings",
-    body: "A record label and publishing company for the artists we meet along the way, built around releases, rights and the long game.",
+    n: "02",
+    title: "getfoh.com",
+    kind: "Own product / digital",
+    screen: "FRONT OF HOUSE",
+    bg: "#1C1C1C",
+    fg: "#ECE7DC",
+    href: "https://www.getfoh.com",
+    external: true,
+    logo: { src: "/images/logos/getfoh-logo-white.svg", alt: "getfoh.com" },
   },
 ];
 
-export const marqueeWords: string[] = [
-  "2e11",
-  "clrfy.io",
-  "getfoh.com",
-  "Records & publishing",
-  "Media",
-  "Music",
-  "Digital",
+export const services = [
+  { n: "01", t: "Digital products" },
+  { n: "02", t: "Websites & platforms" },
+  { n: "03", t: "Brand & design" },
+  { n: "04", t: "Media & content" },
+  { n: "05", t: "Music & sound" },
+  { n: "06", t: "Production & post" },
 ];
 
-export const contactReasons: string[] = [
-  "Working with clrfy.io",
-  "Playing or hosting a getfoh gig",
-  "Records & publishing",
-  "Pitching a new brand",
-  "Press",
+export const elevenRule = {
+  heading: ["The eleven", "rule"],
+  paragraphs: [
+    "Most work stops when it is good enough. Ten. We think the interesting part starts after that.",
+    "We build it properly.\nWe make it sound right.\nThen we turn it up.",
+  ],
+  italic: "No trends.\nOnly volume.",
+};
+
+export const ourOwn = {
+  heading: "Our own",
+  products: [
+    {
+      name: "clrfy.io",
+      description:
+        "Paid Q&A for creators and experts — ask a question, pay a fee and get a real answer from a real person.",
+      href: "https://clrfy.io",
+    },
+    {
+      name: "getfoh.com",
+      description: "A crowd-funded home gig platform — fans back a show, and when the room is full, the gig is on.",
+      href: "https://www.getfoh.com",
+    },
+  ],
+  footer: "Products we run ourselves. ■",
+};
+
+export const statement = {
+  lineOne: "We don’t",
+  lineTwoOutlined: "do ten",
+  body: "Stand out. Break the scale. Make something people hear before they see it.",
+  cta: "Let’s build something loud ↗",
+};
+
+export const volumeType = {
+  lines: ["We make it", "louder."],
+  notes: [
+    "Silence.",
+    "A whisper.",
+    "Polite.",
+    "Background.",
+    "Agency default.",
+    "Fine.",
+    "Getting there.",
+    "Good.",
+    "Strong.",
+    "Very strong.",
+    "Ten. Most stop here.",
+    "Eleven. This is 2e11.",
+  ],
+  label: "Brand device — type that turns up",
+  helper: "Click a level. One variable font, from a whisper to the full brand voice.",
+};
+
+export const footer = {
+  vertical: ["Let’s make", "something loud."],
+  headline: ["Ready to", "turn it up?"],
+  sub: "Products, brands, films, records.\nTell us what you’re making.",
+  contactHeading: "Contact",
+  links: [
+    { label: "[email]@2e11.com", href: "mailto:[email]@2e11.com" },
+    { label: "2e11.com", href: "/" },
+    { label: "clrfy.io ↗", href: "https://clrfy.io" },
+    { label: "getfoh.com ↗", href: "https://www.getfoh.com" },
+    { label: "[Instagram] / [SoundCloud]", href: "#" },
+  ],
+  stampLabel: "CREATIVE • DIGITAL • MEDIA • SOUND • 2E11 • ",
+  barcode: "2E11—0011",
+};
+
+export const contactReasonOptions = [
+  "A product (like clrfy.io or getfoh.com)",
+  "A website or platform",
+  "Brand & design",
+  "Media & content",
+  "Music & sound",
+  "Production & post",
   "Something else",
 ];
 
-export const nav = [
-  { label: "Brands", href: "#brands" },
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+export const contactBudgetOptions = [
+  "Under $10k",
+  "$10k–$25k",
+  "$25k–$75k",
+  "$75k+",
+  "Not sure yet",
 ];
-
-export const headerPills = [
-  { label: "clrfy.io", href: "https://clrfy.io" },
-  { label: "getfoh", href: "https://www.getfoh.com" },
-];
-
-export const footerColumns = [
-  {
-    heading: "2e11",
-    links: [
-      { label: "Brands", href: "#brands" },
-      { label: "Work", href: "#work" },
-      { label: "About", href: "#about" },
-    ],
-  },
-  {
-    heading: "The house",
-    links: [
-      { label: "clrfy.io", href: "https://clrfy.io", external: true },
-      { label: "getfoh.com", href: "https://www.getfoh.com", external: true },
-      { label: "Records & publishing", href: "#contact" },
-    ],
-  },
-  {
-    heading: "Say hello",
-    links: [
-      { label: "hello@2e11.com", href: "mailto:hello@2e11.com" },
-      { label: "LinkedIn", href: "#" },
-      { label: "Instagram", href: "#" },
-    ],
-  },
-];
-
-export const DEFAULT_VOLUME = 8;
-export const WAVE_BAR_COUNT = 96;
-export const WAVE_PEAK_INDEX = WAVE_BAR_COUNT - 14; // bar 82

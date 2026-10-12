@@ -1,26 +1,30 @@
 import { Header } from "@/components/Header";
-import { Showreel } from "@/components/Showreel";
-import { VolumeRow } from "@/components/VolumeRow";
-import { Intro } from "@/components/Intro";
-import { BrandCards } from "@/components/BrandCards";
-import { WorkCarousel } from "@/components/WorkCarousel";
-import { Ticker } from "@/components/Ticker";
-import { About } from "@/components/About";
-import { Contact } from "@/components/Contact";
+import { Hero } from "@/components/Hero";
+import { ScaleRuler } from "@/components/ScaleRuler";
+import { SelectedWork } from "@/components/SelectedWork";
+import { VolumeType } from "@/components/VolumeType";
+import { ThreeColumns } from "@/components/ThreeColumns";
+import { StatementBand } from "@/components/StatementBand";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-hidden bg-bg text-white">
-      <Header />
-      <Showreel />
-      <VolumeRow />
-      <Intro />
-      <BrandCards />
-      <WorkCarousel />
-      <Ticker />
-      <About />
-      <Contact />
+    <div className="relative bg-paper text-ink">
+      <div className="relative z-[51] bg-white">
+        <Header />
+      </div>
+      <main>
+        <div className="relative z-[51] bg-white">
+          <div className="px-page" style={{ maxWidth: "var(--max-width)", margin: "0 auto" }}>
+            <Hero />
+            <ScaleRuler />
+          </div>
+        </div>
+        <SelectedWork />
+        <VolumeType />
+        <ThreeColumns />
+        <StatementBand />
+      </main>
       <Footer />
     </div>
   );

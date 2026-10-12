@@ -1,57 +1,64 @@
-import { knobDegFor } from "@/lib/volume-context";
-
 type LogoProps = {
-  vol: number;
-  /** font-size (number = px, or any CSS size string e.g. a clamp()); everything else is sized in em from this */
-  size?: number | string;
+  /** font-size in px — everything else derives from this */
+  size: number;
+  tone?: "ink" | "white";
+  accent?: string;
+  /** the 11 is lifted by this fraction of size (default 0.22) */
+  raise?: number;
   className?: string;
 };
 
 /**
- * The 2e11 lockup: a dial badge (accent circle, black "11", white pointer
- * that rotates with volume) + the "2e11" wordmark, gap 0.22em. Scales
- * entirely from font-size since every dimension below is in em.
+ * Route B, "Over the line": lowercase 2e11, a hairline at the cap height of
+ * the 2 (ten, the limit), the 11 raised through it in the accent colour.
+ * Tuned at 40/120/300px against the design reference; locked as em-relative
+ * fractions of `size` so it holds proportion at any size.
  */
-export function Logo({ vol, size = 26, className = "" }: LogoProps) {
-  const deg = knobDegFor(vol);
+export function Logo({ size, tone = "ink", accent = "#D40000", raise = 0.22, className = "" }: LogoProps) {
+  const fg = tone === "white" ? "#FFFFFF" : "#111111";
+  const lift = size * raise;
+  const lineTop = size * raise + size * 0.07;
+  const hair = Math.max(1, size * 0.018);
 
   return (
-    <span
-      className={`inline-flex items-center text-white font-unbounded font-extrabold leading-none ${className}`}
-      style={{ gap: "0.22em", fontSize: size, letterSpacing: "0.02em" }}
+    <div
+      role="img"
+      aria-label="2e11"
+      className={className}
+      style={{
+        position: "relative",
+        display: "inline-flex",
+        alignItems: "baseline",
+        fontFamily: "var(--font-archivo), Archivo, sans-serif",
+        fontWeight: 900,
+        fontStretch: "62%",
+        lineHeight: 0.8,
+        letterSpacing: "-0.01em",
+        paddingTop: lift,
+        color: fg,
+      }}
     >
+      <span style={{ fontSize: size }}>2e</span>
       <span
-        className="relative inline-flex items-center justify-center flex-none rounded-full text-black"
-        style={{ width: "1.05em", height: "1.05em", background: "var(--acc)" }}
+        style={{
+          fontSize: size,
+          color: accent,
+          display: "inline-block",
+          transform: `translateY(-${lift}px)`,
+        }}
       >
-        <span
-          style={{
-            fontSize: "0.68em",
-            lineHeight: 1,
-            letterSpacing: "-0.04em",
-            paddingRight: "0.03em",
-          }}
-        >
-          11
-        </span>
-        <span
-          className="absolute inset-0 transition-transform duration-[120ms]"
-          style={{ transform: `rotate(${deg}deg)` }}
-        >
-          <span
-            className="absolute rounded bg-white"
-            style={{
-              left: "calc(50% - 0.08em)",
-              top: "-0.24em",
-              width: "0.16em",
-              height: "0.36em",
-              borderRadius: "0.04em",
-              boxShadow: "0 0 0 1px #000",
-            }}
-          />
-        </span>
+        11
       </span>
-      <span>2e11</span>
-    </span>
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: lineTop,
+          height: hair,
+          background: fg,
+        }}
+      />
+    </div>
   );
 }
