@@ -168,7 +168,7 @@ export function VolumeType() {
         </span>
       </div>
 
-      <div className="flex flex-1 flex-wrap items-center gap-8">
+      <div className="flex flex-1 flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
         <div className="min-w-0 flex-1 uppercase" style={{ lineHeight: 0.86 }}>
           {volumeType.lines.map((line, i) => (
             <div
@@ -198,7 +198,7 @@ export function VolumeType() {
         <VolumeDial level={reducedMotion ? 11 : level} fg={fg} accent={accent} reducedMotion={reducedMotion} />
       </div>
 
-      <div className="grid grid-cols-6 gap-0 border-t-[1.5px] sm:grid-cols-12" style={{ borderColor: fg }}>
+      <div className="grid grid-cols-12 gap-0 border-t-[1.5px]" style={{ borderColor: fg }}>
         {Array.from({ length: 12 }, (_, n) => {
           const sel = n === (reducedMotion ? 11 : level);
           return (
@@ -208,7 +208,7 @@ export function VolumeType() {
               onClick={() => pick(n)}
               aria-label={`Volume ${n}`}
               aria-pressed={sel}
-              className="flex h-[60px] flex-col items-center justify-end gap-2 border-r pb-3 label font-semibold transition-colors"
+              className="flex h-[44px] flex-col items-center justify-end gap-1 border-r pb-2 label text-[10px] font-semibold transition-colors sm:h-[60px] sm:gap-2 sm:pb-3 sm:text-[12px]"
               style={{
                 borderColor: bg === "#111111" ? "#333333" : "#CFC9BC",
                 background: sel ? "#D40000" : "transparent",
