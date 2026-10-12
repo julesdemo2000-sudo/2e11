@@ -11,7 +11,7 @@ export function StatementBand() {
         {statement.lineOne}
         <br />
         do{" "}
-        <span style={{ WebkitTextStroke: "3px #111111", color: "transparent" }}>
+        <span style={{ WebkitTextStroke: "3px #111111", color: "#FFFFFF" }}>
           {statement.lineTwoOutlined.replace("do ", "")}
         </span>
         <span className="text-signal">.</span>
