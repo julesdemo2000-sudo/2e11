@@ -137,7 +137,7 @@ export const footer = {
   sub: "Products, brands, films, records.\nTell us what you’re making.",
   contactHeading: "Contact",
   links: [
-    { label: "[email]@2e11.com", href: "mailto:[email]@2e11.com" },
+    { label: "hello@2e11.com", href: "mailto:hello@2e11.com" },
     { label: "2e11.com", href: "/" },
     { label: "clrfy.io ↗", href: "https://clrfy.io" },
     { label: "getfoh.com ↗", href: "https://www.getfoh.com" },
@@ -145,7 +145,9 @@ export const footer = {
   ],
   stampLabel: "CREATIVE • DIGITAL • MEDIA • SOUND • 2E11 • ",
   barcode: "2E11—0011",
-  legalName: "2e11 Digital & Media Ltd",
+  legalName: "2E11 Digital & Media Ltd",
+  companyNo: "17516294",
+  registeredIn: "Registered in England & Wales",
 };
 
 export const contactReasonOptions = [

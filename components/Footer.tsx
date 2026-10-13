@@ -82,7 +82,7 @@ export function Footer() {
         className="label border-t-[1.5px] border-[#2A2A2A] px-page py-5 text-muted-on-ink"
         style={{ maxWidth: "var(--max-width)", margin: "0 auto" }}
       >
-        © {new Date().getFullYear()} {footer.legalName}
+        © {new Date().getFullYear()} {footer.legalName}. Company No. {footer.companyNo}. {footer.registeredIn}.
       </div>
     </footer>
   );
