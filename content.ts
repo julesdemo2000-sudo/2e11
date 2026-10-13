@@ -141,7 +141,6 @@ export const footer = {
     { label: "2e11.com", href: "/" },
     { label: "clrfy.io ↗", href: "https://clrfy.io" },
     { label: "getfoh.com ↗", href: "https://www.getfoh.com" },
-    { label: "[Instagram] / [SoundCloud]", href: "#" },
   ],
   stampLabel: "CREATIVE • DIGITAL • MEDIA • SOUND • 2E11 • ",
   barcode: "2E11—0011",
