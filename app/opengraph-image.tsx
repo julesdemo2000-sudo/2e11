@@ -6,8 +6,11 @@ export const alt = "2e11 — turned up to eleven";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const vestData = await readFile(join(process.cwd(), "assets-source/founder-vest-cutout.png"), "base64");
-const vestSrc = `data:image/png;base64,${vestData}`;
+const heroData = await readFile(
+  join(process.cwd(), "public/images/brand/founder-hero-studio-cutout.png"),
+  "base64"
+);
+const heroSrc = `data:image/png;base64,${heroData}`;
 
 export default function OgImage() {
   return new ImageResponse(
@@ -38,7 +41,7 @@ export default function OgImage() {
           11
         </div>
         <img
-          src={vestSrc}
+          src={heroSrc}
           alt=""
           height={630}
           style={{ position: "absolute", right: 60, bottom: 0, objectFit: "contain" }}
