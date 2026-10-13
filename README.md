@@ -80,4 +80,43 @@ orange or accepting the shortfall as a deliberate brand choice.
 ## Deploy
 
 Auto-deploys to Vercel from `main`. Env vars: `RESEND_API_KEY`,
-`CONTACT_TO`, `NEXT_PUBLIC_SITE_URL` (see `.env.local.example`).
+`CONTACT_TO`, `NEXT_PUBLIC_SITE_URL` (see `.env.local.example`). The
+GitHub → Vercel deploy webhook has been intermittently flaky (a push lands on
+`main` but no deployment triggers, or a deployment errors with "Git
+information retrieval failed") — if a push doesn't show up in Vercel's
+deployments list within a couple of minutes, deploy directly with
+`vercel --prod` (requires `vercel link` once; see `.vercel/` — gitignored)
+rather than waiting on the webhook.
+
+## Domain & email (2026-10-13)
+
+`2e11.com` is registered at **Hostinger**. `hello@2e11.com` needs to exist as
+a working forwarding address, but the obvious free options didn't pan out:
+
+- **Hostinger's own email** is paid-only (Titan Business Email plans,
+  £0.39+/mo) — no free forwarding tier on the domain's Emails page.
+- **ForwardEmail.net**'s free tier hard-blocks newly-registered domains as an
+  anti-abuse measure (`2e11.com` triggered this on WHOIS lookup) — free use
+  requires the domain to already have some age.
+- **ImprovMX** is already in use for clrfy.io but its free plan caps out at
+  one domain per account; a second domain needs Premium ($9/mo).
+
+**Decision: migrate `2e11.com`'s DNS to Cloudflare (free) and use Cloudflare
+Email Routing.** Traffic to this site is currently minimal (placeholder
+landing page), so the free route won over paying $9/mo for ImprovMX
+Premium. This only moves **DNS resolution** — Hostinger stays the registrar,
+same renewal date/price, nothing changes there. Steps:
+
+1. Add `2e11.com` to a Cloudflare account; let it auto-import the existing
+   DNS records (the Vercel A/CNAME records for the apex + `www` are the
+   ones that matter — verify they came across before cutting over).
+2. In Hostinger → `2e11.com` → DNS/Nameservers, switch the nameservers to
+   the two Cloudflare provides. Propagation: minutes to ~24h.
+3. Once active, enable Email Routing in Cloudflare (it manages its own
+   MX/TXT records — no manual DNS editing needed for this part) and add a
+   forwarding rule for `hello@2e11.com`.
+
+Status as of 2026-10-13: decision made, migration in progress (done outside
+this repo, in the Hostinger/Cloudflare dashboards). Update this section once
+`hello@2e11.com` is live and confirm it in `content.ts`'s footer email link
+(already set to `hello@2e11.com`, just needs the mailbox behind it to exist).
