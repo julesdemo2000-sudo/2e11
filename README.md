@@ -116,7 +116,11 @@ same renewal date/price, nothing changes there. Steps:
    MX/TXT records — no manual DNS editing needed for this part) and add a
    forwarding rule for `hello@2e11.com`.
 
-Status as of 2026-10-13: decision made, migration in progress (done outside
-this repo, in the Hostinger/Cloudflare dashboards). Update this section once
-`hello@2e11.com` is live and confirm it in `content.ts`'s footer email link
-(already set to `hello@2e11.com`, just needs the mailbox behind it to exist).
+**Status: done (2026-10-14).** DNS fully migrated to Cloudflare (nameservers
+`keira.ns.cloudflare.com` / `west.ns.cloudflare.com`), Email Routing active
+(MX records `route1/2/3.mx.cloudflare.net` resolving), `hello@2e11.com`
+forwarding confirmed working end-to-end with a real test email reaching the
+verified destination inbox. The Vercel A/CNAME records were re-created in
+Cloudflare as **DNS only** (not proxied) deliberately — Vercel already
+handles SSL/CDN itself, so proxying through Cloudflare too would risk a
+certificate conflict. Don't toggle those records to "Proxied."
